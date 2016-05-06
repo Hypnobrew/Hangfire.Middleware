@@ -1,5 +1,4 @@
-﻿using System;
-using Hangfire.Annotations;
+﻿using Hangfire.Annotations;
 using Hangfire.Dashboard;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
@@ -26,12 +25,8 @@ namespace Hangfire.Extensions
             [NotNull] BackgroundJobServerOptions options,
             [NotNull] JobStorage storage)
         {
-            if (builder == null) throw new ArgumentNullException("IApplicationBuilder cannot be null");
-            if (options == null) throw new ArgumentNullException("BackgroundJobServerOptions cannot be null");
-            if (storage == null) throw new ArgumentNullException("JobStorage cannot be null");
-
+            
             var server = new BackgroundJobServer(options, storage);
-
             var lifetime = builder.ApplicationServices.GetRequiredService<IApplicationLifetime>();
             lifetime.ApplicationStopped.Register(server.Dispose);
 
@@ -60,16 +55,12 @@ namespace Hangfire.Extensions
 
         public static IApplicationBuilder UseHangfireDashboard(
             [NotNull] this IApplicationBuilder builder,
-            [NotNull] string pathMatch,
+            [NotNull] string path,
             [NotNull] DashboardOptions options,
             [NotNull] JobStorage storage)
         {
-            if (builder == null) throw new ArgumentNullException(nameof(builder));
-            if (pathMatch == null) throw new ArgumentNullException(nameof(pathMatch));
-            if (options == null) throw new ArgumentNullException(nameof(options));
-            if (storage == null) throw new ArgumentNullException(nameof(storage));
 
-            return builder.Map(pathMatch, app =>
+            return builder.Map(path, app =>
             {
                 app.UseOwin(next =>
                 {
