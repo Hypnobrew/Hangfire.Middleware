@@ -1,0 +1,18 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "Hangfire Class Library",
+  "authors": [ "Cris" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        "HangFire": "1.5.3", 
+        "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+        "Hangfire.MemoryStorage": "1.1.0",
+        "Microsoft.AspNet.Owin": "1.0.0-rc1-final"
+      }
+    }
+  }
+}
